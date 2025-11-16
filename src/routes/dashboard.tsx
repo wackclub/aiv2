@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 import { getCookie } from 'hono/cookie';
-import { requireAuth } from '../middleware/auth';
+import { requireAuth, requireHackClubVerification } from '../middleware/auth';
 import { db } from '../db';
 import { apiKeys, requestLogs, sessions } from '../db/schema';
 import { eq, desc, sql, and, gt } from 'drizzle-orm';
@@ -38,7 +38,7 @@ dashboard.get('/', async (c) => {
   return c.html(<Home models={allowedLanguageModels || []} />);
 });
 
-dashboard.get('/dashboard', requireAuth, async (c) => {
+dashboard.get('/dashboard', requireAuth, requireHackClubVerification, async (c) => {
   const user = c.get('user');
 
   const keys = await db
@@ -92,7 +92,7 @@ dashboard.get('/dashboard', requireAuth, async (c) => {
   );
 });
 
-dashboard.get('/global', requireAuth, async (c) => {
+dashboard.get('/global', requireAuth, requireHackClubVerification, async (c) => {
   const user = c.get('user');
 
   // Global stats across ALL users

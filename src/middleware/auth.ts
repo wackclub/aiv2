@@ -64,6 +64,58 @@ export async function requireAuth(c: Context<{ Variables: AppVariables }>, next:
   await next();
 }
 
+export async function requireHackClubVerification(c: Context<{ Variables: AppVariables }>, next: Next) {
+  const user = c.get('user');
+
+  if (!user?.slackId) {
+    throw new HTTPException(403, {
+      message: 'Slack ID not found. Please log in again.',
+      res: Response.json(
+        { error: 'Slack ID not found. Please log in again.' },
+        { status: 403 }
+      )
+    });
+  }
+
+  try {
+    const response = await fetch(
+      `https://identity.hackclub.com/api/external/check?slack_id=${user.slackId}`
+    );
+
+    if (!response.ok) {
+      throw new Error(`Identity API returned status ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    // If the user is not verified, redirect them to the identity service
+    if (!data.verified) {
+      throw new HTTPException(403, {
+        message: 'You need to verify your Slack account. Please visit https://identity.hackclub.com to link your Slack account.',
+        res: Response.json(
+          {
+            error: 'Slack account verification required',
+            message: 'You need to verify your Slack account. Please visit https://identity.hackclub.com to link your Slack account.',
+            verificationUrl: 'https://identity.hackclub.com'
+          },
+          { status: 403 }
+        )
+      });
+    }
+  } catch (error) {
+    // If it's already an HTTPException, rethrow it
+    if (error instanceof HTTPException) {
+      throw error;
+    }
+
+    // For other errors (network issues, etc.), log and allow access
+    // This ensures the service doesn't break if the identity API is down
+    console.error('Error checking Hack Club identity:', error);
+  }
+
+  await next();
+}
+
 export async function requireApiKey(c: Context<{ Variables: AppVariables }>, next: Next) {
   const authHeader = c.req.header('Authorization');
 

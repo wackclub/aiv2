@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import { arktypeValidator } from '@hono/arktype-validator';
 import { type } from 'arktype';
 import { HTTPException } from 'hono/http-exception';
-import { requireAuth } from '../middleware/auth';
+import { requireAuth, requireHackClubVerification } from '../middleware/auth';
 import { db } from '../db';
 import { apiKeys, requestLogs } from '../db/schema';
 import { eq, and, isNull, desc, sql } from 'drizzle-orm';
@@ -10,7 +10,7 @@ import type { AppVariables } from '../types';
 
 const api = new Hono<{ Variables: AppVariables }>();
 
-api.use('*', requireAuth);
+api.use('*', requireAuth, requireHackClubVerification);
 
 const createKeySchema = type({ name: '1<=string<=100' });
 const deleteKeySchema = type({ id: 'string' });
