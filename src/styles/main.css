@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Google Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-brand-bg: #FFF3EB;
+  --color-brand-primary: #EC3750;
+  --color-brand-heading: #4D000B;
+  --color-brand-text: #A67E85;
+  --color-brand-primary-hover: #D62640;
+  --color-brand-surface: #FFFFFF;
+  --color-brand-border: #F0D4D8;
+  --border-radius-xl: 1rem;
+  --border-radius-2xl: 1.5rem;
+  --border-radius-3xl: 2rem;
+}
+
+@view-transition {
+  navigation: auto;
+}

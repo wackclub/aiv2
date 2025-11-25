@@ -72,6 +72,7 @@ if (env.NODE_ENV === "development") {
 }
 
 app.use("/*", serveStatic({ root: "./public" }));
+app.use("/*", serveStatic({ root: "./" }));
 
 app.onError((err, c) => {
   if (err instanceof HTTPException) {
