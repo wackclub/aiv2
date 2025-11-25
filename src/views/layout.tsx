@@ -32,36 +32,24 @@ export const Layout = ({
             href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap"
             rel="stylesheet"
           />
-          <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+          <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
           {html`
-          <script>
-            tailwind.config = {
-              theme: {
-                extend: {
-                  fontFamily: {
-                    sans: ['Google Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-                  },
-                  colors: {
-                    brand: {
-                      bg: '#FFF3EB',
-                      primary: '#EC3750',
-                      heading: '#4D000B',
-                      text: '#A67E85',
-                      'primary-hover': '#D62640',
-                      'surface': '#FFFFFF',
-                      'border': '#F0D4D8',
-                    }
-                  },
-                  borderRadius: {
-                    'xl': '1rem',
-                    '2xl': '1.5rem',
-                    '3xl': '2rem',
-                  }
-                }
-              }
+          <style type="text/tailwindcss">
+            @theme {
+              --font-family-sans: "Google Sans", ui-sans-serif, system-ui, sans-serif;
+              --color-brand-bg: #FFF3EB;
+              --color-brand-primary: #EC3750;
+              --color-brand-heading: #4D000B;
+              --color-brand-text: #A67E85;
+              --color-brand-primary-hover: #D62640;
+              --color-brand-surface: #FFFFFF;
+              --color-brand-border: #F0D4D8;
+              --border-radius-xl: 1rem;
+              --border-radius-2xl: 1.5rem;
+              --border-radius-3xl: 2rem;
             }
-          </script>
-        `}
+          </style>
+          `}
           {html`
           <style>
             @view-transition {
