@@ -32,7 +32,7 @@ export const Layout = ({
             href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap"
             rel="stylesheet"
           />
-          <link rel="stylesheet" href="/src/styles/main.css" />
+          <link rel="stylesheet" href="/main.css" />
         </head>
         <body class="bg-brand-bg text-brand-text transition-colors duration-200 min-h-screen flex flex-col">
           {children}

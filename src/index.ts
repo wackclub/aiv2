@@ -72,7 +72,7 @@ if (env.NODE_ENV === "development") {
 }
 
 app.use("/*", serveStatic({ root: "./public" }));
-app.get("/src/styles/main.css", serveStatic({ path: "./src/styles/main.css" }));
+app.get("/main.css", serveStatic({ path: "./src/styles/main.css" }));
 
 app.onError((err, c) => {
   if (err instanceof HTTPException) {

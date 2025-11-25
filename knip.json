@@ -1,3 +1,8 @@
 {
-  "ignore": ["scripts/**"]
+  "ignore": ["scripts/**", "src/styles/**"],
+  "ignoreDependencies": [
+    "tailwindcss",
+    "@tailwindcss/typography",
+    "bun-plugin-tailwind"
+  ]
 }
