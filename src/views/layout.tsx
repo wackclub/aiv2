@@ -32,7 +32,7 @@ export const Layout = ({
             href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap"
             rel="stylesheet"
           />
-          <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+          <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4?plugins=typography"></script>
           {html`
           <style type="text/tailwindcss">
             @theme {
