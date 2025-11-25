@@ -36,7 +36,7 @@ export const Layout = ({
           {html`
           <style type="text/tailwindcss">
             @theme {
-              --font-family-sans: "Google Sans", ui-sans-serif, system-ui, sans-serif;
+              --font-sans: "Google Sans", ui-sans-serif, system-ui, sans-serif;
               --color-brand-bg: #FFF3EB;
               --color-brand-primary: #EC3750;
               --color-brand-heading: #4D000B;
